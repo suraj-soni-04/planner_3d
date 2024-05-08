@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './DisplayComponent.css';
+import { fabric } from 'fabric';
 
 interface DisplayComponentProps {
   setActiveComponent: (component: string) => void;
@@ -7,6 +8,19 @@ interface DisplayComponentProps {
 
 const DisplayComponent: React.FC<DisplayComponentProps> = ({ setActiveComponent }) => {
   const [activeTab, setActiveTab] = useState<'Edit' | 'View'>('Edit');
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      const newCanvas = new fabric.Canvas(canvasRef.current, { width: canvasRef.current.clientWidth, height: canvasRef.current.clientHeight });
+      newCanvas.isDrawingMode = true;
+      newCanvas.freeDrawingBrush = new fabric.PencilBrush(newCanvas);
+      newCanvas.freeDrawingBrush.width = 2;
+      newCanvas.freeDrawingBrush.color = 'black';
+      setCanvas(newCanvas);
+    }
+  }, []);
 
   const handleTabChange = (tab: 'Edit' | 'View') => {
     setActiveTab(tab);
@@ -24,10 +38,7 @@ const DisplayComponent: React.FC<DisplayComponentProps> = ({ setActiveComponent 
         </button>
       </nav>
       {activeTab === 'Edit' ? (
-        <div>
-          <h2>Edit Section</h2>
-          {/* Your edit section content here */}
-        </div>
+        <canvas ref={canvasRef} className="canvas"></canvas>
       ) : (
         <div>
           <h2>View Section</h2>
