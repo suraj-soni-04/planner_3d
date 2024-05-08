@@ -16,7 +16,7 @@ const DisplayComponent: React.FC<DisplayComponentProps> = ({ setActiveComponent 
       const newCanvas = new fabric.Canvas(canvasRef.current, { width: canvasRef.current.clientWidth, height: canvasRef.current.clientHeight });
       newCanvas.isDrawingMode = true;
       newCanvas.freeDrawingBrush = new fabric.PencilBrush(newCanvas);
-      newCanvas.freeDrawingBrush.width = 3;
+      newCanvas.freeDrawingBrush.width = 2;
       newCanvas.freeDrawingBrush.color = 'black';
       setCanvas(newCanvas);
     }
