@@ -1,3 +1,4 @@
+//PreviewComponent.tsx
 import React from 'react';
 import './PreviewComponent.css';
 

@@ -1,12 +1,13 @@
+// ToolComponent.tsx
 import React from 'react';
 import './ToolComponent.css';
-import table from '../../resources/table.png';
-import lamp_table from '../../resources/lamp-table.png';
-import sofa from '../../resources/sofa.png';
-import cupboard from '../../resources/cupboard.png';
-import bed from '../../resources/bed.png';
-import chair from '../../resources/chair.png';
-
+import DraggableImage from '../DraggableImageComponent/DraggableImage';
+import bedImage from '../../resources/bed.png';
+import chairImage from '../../resources/chair.png';
+import cupboardImage from '../../resources/cupboard.png';
+import lampTableImage from '../../resources/lamp-table.png';
+import sofaImage from '../../resources/sofa.png';
+import tableImage from '../../resources/table.png';
 
 interface ToolComponentProps {
   setActiveComponent: (component: string) => void;
@@ -15,31 +16,21 @@ interface ToolComponentProps {
 const ToolComponent: React.FC<ToolComponentProps> = ({ setActiveComponent }) => {
   return (
     <div className="rectangle-section section2">
-      <div className="button-row">
-        <button className="tool-button">
-          <img src={table} alt="table" />
-        </button>
-        <button className="tool-button">
-          <img src={chair} alt="chair" />
-        </button>
+      <div className="button-column">
+        <div className="button-row">
+          <DraggableImage imageUrl={bedImage} />
+          <DraggableImage imageUrl={chairImage} />
+        </div>
+        <div className="button-row">
+          <DraggableImage imageUrl={cupboardImage} />
+          <DraggableImage imageUrl={lampTableImage} />
+        </div>
+        <div className="button-row">
+          <DraggableImage imageUrl={sofaImage} />
+          <DraggableImage imageUrl={tableImage} />
+        </div>
       </div>
-      <div className="button-row">
-        <button className="tool-button">
-          <img src={lamp_table} alt="lamp-table" />
-        </button>
-        <button className="tool-button">
-          <img src={bed} alt="bed" />
-        </button>
-      </div>
-      <div className="button-row">
-        <button className="tool-button">
-          <img src={sofa} alt="sofa" />
-        </button>
-        <button className="tool-button">
-          <img src={cupboard} alt="cupboard" />
-        </button>
-      </div>
-      <div style={{ marginBottom: '210px' }}></div>
+      <div style={{ marginBottom: '136px' }}></div>
       <button onClick={() => setActiveComponent('Preview')} className="save-button">
         SAVE
       </button>

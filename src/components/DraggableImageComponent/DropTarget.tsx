@@ -1,3 +1,4 @@
+//DropTarget.tsx
 import React, { ReactNode } from 'react';
 import { useDrop, DropTargetMonitor } from 'react-dnd';
 
@@ -22,9 +23,7 @@ const DropTarget: React.FC<DropTargetProps> = ({ onDrop, children }) => {
   });
 
   return (
-    <div ref={drop} style={{ width: '100%', height: '100%', border: isOver ? '2px solid red' : '2px dashed blue' }}>
-      {children}
-    </div>
+    <div></div>
   );
 };
 

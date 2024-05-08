@@ -1,50 +1,37 @@
-import React, { useState, useRef, useEffect } from 'react';
+// DisplayComponent.tsx
+import React from 'react';
 import './DisplayComponent.css';
-import { fabric } from 'fabric';
+//import DraggableImage from '../DraggableImageComponent/DraggableImage';
+import DropTarget from '../DraggableImageComponent/DropTarget';
+import ToolComponent from '../ToolComponent/ToolComponent';
 
 interface DisplayComponentProps {
   setActiveComponent: (component: string) => void;
 }
 
 const DisplayComponent: React.FC<DisplayComponentProps> = ({ setActiveComponent }) => {
-  const [activeTab, setActiveTab] = useState<'Edit' | 'View'>('Edit');
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      const newCanvas = new fabric.Canvas(canvasRef.current, { width: canvasRef.current.clientWidth, height: canvasRef.current.clientHeight });
-      newCanvas.isDrawingMode = true;
-      newCanvas.freeDrawingBrush = new fabric.PencilBrush(newCanvas);
-      newCanvas.freeDrawingBrush.width = 3;
-      newCanvas.freeDrawingBrush.color = 'black';
-      setCanvas(newCanvas);
-    }
-  }, []);
+  const handleDrop = (imageUrl: string, position: { x: number; y: number }) => {
+    console.log('Dropped Image:', imageUrl, 'Position:', position);
+    // You can add your fabric.js code here to draw the dropped image on canvas
+  };
 
   const handleTabChange = (tab: 'Edit' | 'View') => {
-    setActiveTab(tab);
     setActiveComponent(tab === 'Edit' ? 'Tool' : 'Preview');
   };
 
   return (
     <div className="rectangle-section section1">
       <nav className="navbar">
-        <button onClick={() => handleTabChange('Edit')} className={activeTab === 'Edit' ? 'active' : ''}>
+        <button onClick={() => handleTabChange('Edit')} className="active">
           Edit
         </button>
-        <button onClick={() => handleTabChange('View')} className={activeTab === 'View' ? 'active' : ''}>
-          View
-        </button>
+        <button onClick={() => handleTabChange('View')}>View</button>
       </nav>
-      {activeTab === 'Edit' ? (
-        <canvas ref={canvasRef} className="canvas"></canvas>
-      ) : (
-        <div>
-          <h2>View Section</h2>
-          {/* Your view section content here */}
+      <DropTarget onDrop={handleDrop}>
+        <div style={{ padding: '20px' }}>
+          <ToolComponent setActiveComponent={setActiveComponent} />
         </div>
-      )}
+      </DropTarget>
     </div>
   );
 };

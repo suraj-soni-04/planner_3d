@@ -1,24 +1,21 @@
 .preview-button {
-    background-color: #bbaacb;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 16px;
-    margin: 5px;
-    width: calc(100% - 20px);
-    border-radius: 8px;
-  }
-  
-  .button-column {
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-  }
+  background-color: #bbaacb;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 16px;
+  margin: 5px;
+  width: calc(100% - 20px);
+  border-radius: 8px;
+}
 
-  .preview-button:hover {
-    background-color: #ea9a9a;
-  }
-  
-  
-  
+.button-column {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+}
+
+.preview-button:hover {
+  background-color: #ea9a9a;
+}
