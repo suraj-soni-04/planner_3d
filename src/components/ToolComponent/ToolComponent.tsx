@@ -11,23 +11,24 @@ import tableImage from '../../resources/table.png';
 
 interface ToolComponentProps {
   setActiveComponent: (component: string) => void;
+  onImageDrag: (imageUrl: string) => void;
 }
 
-const ToolComponent: React.FC<ToolComponentProps> = ({ setActiveComponent }) => {
+const ToolComponent: React.FC<ToolComponentProps> = ({ setActiveComponent, onImageDrag }) => {
   return (
     <div className="rectangle-section section2">
       <div className="button-column">
         <div className="button-row">
-          <DraggableImage imageUrl={bedImage} />
-          <DraggableImage imageUrl={chairImage} />
+          <DraggableImage imageUrl={bedImage} onDrag={() => onImageDrag(bedImage)}  />
+          <DraggableImage imageUrl={chairImage} onDrag={() => onImageDrag(chairImage)}  />
         </div>
         <div className="button-row">
-          <DraggableImage imageUrl={cupboardImage} />
-          <DraggableImage imageUrl={lampTableImage} />
+          <DraggableImage imageUrl={cupboardImage} onDrag={() => onImageDrag(cupboardImage)}  />
+          <DraggableImage imageUrl={lampTableImage} onDrag={() => onImageDrag(lampTableImage)}  />
         </div>
         <div className="button-row">
-          <DraggableImage imageUrl={sofaImage} />
-          <DraggableImage imageUrl={tableImage} />
+          <DraggableImage imageUrl={sofaImage} onDrag={() => onImageDrag(sofaImage)}  />
+          <DraggableImage imageUrl={tableImage} onDrag={() => onImageDrag(tableImage)}  />
         </div>
       </div>
       <div style={{ marginBottom: '136px' }}></div>

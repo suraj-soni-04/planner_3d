@@ -10,13 +10,27 @@ import './App.css';
 const App: React.FC = () => {
   const [activeComponent, setActiveComponent] = React.useState<string>('Tool');
 
+  const handleImageDrag = (imageUrl: string) => {
+    // You can add your logic here to handle image drag
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="container">
         <div className="big-rectangle">
           <DisplayComponent setActiveComponent={setActiveComponent} />
-          {activeComponent === 'Tool' && <ToolComponent setActiveComponent={setActiveComponent} />}
-          {activeComponent === 'Preview' && <PreviewComponent setActiveComponent={setActiveComponent} />}
+          {activeComponent === 'Tool' && <ToolComponent setActiveComponent={setActiveComponent} onImageDrag={handleImageDrag} />}
+          {activeComponent === 'Preview' && <PreviewComponent setActiveComponent={setActiveComponent} onRotate={function (): void {
+            throw new Error('Function not implemented.');
+          } } onZoomIn={function (): void {
+            throw new Error('Function not implemented.');
+          } } onZoomOut={function (): void {
+            throw new Error('Function not implemented.');
+          } } onModify={function (): void {
+            throw new Error('Function not implemented.');
+          } } onDelete={function (): void {
+            throw new Error('Function not implemented.');
+          } } />}
         </div>
       </div>
     </DndProvider>

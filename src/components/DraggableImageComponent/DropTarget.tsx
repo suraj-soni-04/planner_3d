@@ -1,4 +1,4 @@
-//DropTarget.tsx
+// DropTarget.tsx
 import React, { ReactNode } from 'react';
 import { useDrop, DropTargetMonitor } from 'react-dnd';
 
@@ -22,9 +22,7 @@ const DropTarget: React.FC<DropTargetProps> = ({ onDrop, children }) => {
     }),
   });
 
-  return (
-    <div></div>
-  );
+  return <div ref={drop}>{children}</div>;
 };
 
 export default DropTarget;
