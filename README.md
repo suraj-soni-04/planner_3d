@@ -86,7 +86,8 @@ This component represents the main canvas where images can be dropped, rotated, 
 - `setActiveComponent`: Function to set the active component.
 <hr>
 
-![Screenshot (143)](https://github.com/suraj-soni-04/planner_3d/assets/154866411/f8e8119c-7043-4bd7-8229-a3c40a2ee83b)
+![Screenshot (167)](https://github.com/suraj-soni-04/planner_3d/assets/154866411/0a7ee0ff-74e4-48c4-9d57-94b03f2d0c5e)
 
-![Screenshot (144)](https://github.com/suraj-soni-04/planner_3d/assets/154866411/d1969ff3-bbae-4c7b-80c3-3c7a5248b72d)
+![Screenshot (161)](https://github.com/suraj-soni-04/planner_3d/assets/154866411/111fc483-66b6-4613-8c15-3bdfe12270e1)
+
 
