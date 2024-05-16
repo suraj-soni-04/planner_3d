@@ -1,28 +1,26 @@
 // DropTarget.tsx
-import React, { ReactNode } from 'react';
-import { useDrop, DropTargetMonitor } from 'react-dnd';
+import React from 'react';
+import { useDrop } from 'react-dnd';
 
 interface DropTargetProps {
-  onDrop: (imageUrl: string, position: { x: number; y: number }) => void;
-  children: ReactNode;
+  onDrop: (item: any) => void;
+  children: React.ReactNode;  // Add this line
 }
 
 const DropTarget: React.FC<DropTargetProps> = ({ onDrop, children }) => {
-  const [{ isOver }, drop] = useDrop({
-    accept: 'IMAGE',
-    drop: (item: { type: string; imageUrl: string }, monitor: DropTargetMonitor) => {
-      const offset = monitor.getClientOffset();
-      if (offset) {
-        const { x, y } = offset;
-        onDrop(item.imageUrl, { x, y });
-      }
-    },
-    collect: (monitor: DropTargetMonitor) => ({
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: 'image',
+    drop: (item) => onDrop(item),
+    collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
-  });
+  }));
 
-  return <div ref={drop}>{children}</div>;
+  return (
+    <div ref={drop} className={`drop-target ${isOver ? 'over' : ''}`}>
+      {children}
+    </div>
+  );
 };
 
 export default DropTarget;

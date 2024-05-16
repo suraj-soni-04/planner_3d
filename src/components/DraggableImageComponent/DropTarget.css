@@ -1,0 +1,11 @@
+.drop-target {
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #aaa;
+    position: relative;
+  }
+  
+  .drop-target.over {
+    border-color: #333;
+  }
+  

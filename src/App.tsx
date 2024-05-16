@@ -1,5 +1,4 @@
-// App.tsx
-import React from 'react';
+import React, { useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import DisplayComponent from './components/DisplayComponent/DisplayComponent';
@@ -9,28 +8,59 @@ import './App.css';
 
 const App: React.FC = () => {
   const [activeComponent, setActiveComponent] = React.useState<string>('Tool');
+  const [selectedComponent, setSelectedComponent] = React.useState<string | null>(null);
+  const displayComponentRef = useRef<{ rotateShape: () => void; removeShape: () => void; }>(null);
 
-  const handleImageDrag = (imageUrl: string) => {
-    // You can add your logic here to handle image drag
+  const handleRotate = () => {
+    if (displayComponentRef.current) {
+      displayComponentRef.current.rotateShape();
+    }
+  };
+
+  const handleZoomIn = () => {
+    console.log('Zoom in not implemented.');
+  };
+
+  const handleZoomOut = () => {
+    console.log('Zoom out not implemented.');
+  };
+
+  const handleModify = () => {
+    console.log('Modify not implemented.');
+  };
+
+  const handleDelete = () => {
+    if (displayComponentRef.current) {
+      displayComponentRef.current.removeShape();
+    }
   };
 
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="container">
         <div className="big-rectangle">
-          <DisplayComponent setActiveComponent={setActiveComponent} />
-          {activeComponent === 'Tool' && <ToolComponent setActiveComponent={setActiveComponent} onImageDrag={handleImageDrag} />}
-          {activeComponent === 'Preview' && <PreviewComponent setActiveComponent={setActiveComponent} onRotate={function (): void {
-            throw new Error('Function not implemented.');
-          } } onZoomIn={function (): void {
-            throw new Error('Function not implemented.');
-          } } onZoomOut={function (): void {
-            throw new Error('Function not implemented.');
-          } } onModify={function (): void {
-            throw new Error('Function not implemented.');
-          } } onDelete={function (): void {
-            throw new Error('Function not implemented.');
-          } } />}
+          <DisplayComponent 
+            ref={displayComponentRef} // Save reference to DisplayComponent
+            setActiveComponent={setActiveComponent} 
+            selectedComponent={selectedComponent}
+            setSelectedComponent={setSelectedComponent}
+          />
+          {activeComponent === 'Tool' && (
+            <ToolComponent 
+              setActiveComponent={setActiveComponent} 
+              onImageSelect={setSelectedComponent} 
+            />
+          )}
+          {activeComponent === 'Preview' && (
+            <PreviewComponent 
+              setActiveComponent={setActiveComponent} 
+              onRotate={handleRotate}
+              onZoomIn={handleZoomIn}
+              onZoomOut={handleZoomOut}
+              onModify={handleModify}
+              onDelete={handleDelete}
+            />
+          )}
         </div>
       </div>
     </DndProvider>
